@@ -1,0 +1,116 @@
+{
+	"songs": [
+		{
+			"id": "1",
+			"title": "Och jungfrun hon går i ringen",
+			"arrangedBy": "",
+			"description": "Här kan man skriva lite extra information om en sång, texten kan användas för sökning.",
+			"voices": [
+				{
+					"name": "Soprano",
+					"note": "G5"
+				},
+				{
+					"name": "Alto",
+					"note": "D5"
+				},
+				{
+					"name": "Tenor",
+					"note": "A4"
+				},
+				{
+					"name": "Bass",
+					"note": "G4"
+				}
+			]
+		},
+		{
+			"id": "3",
+			"title": "Kom du ljuva hjärtevän",
+			"arrangedBy": "",
+			"description": "Manskörsarrangemang",
+			"voices": [
+				{
+					"name": "Tenor 1",
+					"note": "#g"
+				},
+				{
+					"name": "Tenor 2",
+					"note": "#f"
+				},
+				{
+					"name": "Bass 1",
+					"note": "a"
+				},
+				{
+					"name": "Bass 2",
+					"note": "c"
+				}
+			]
+		},
+		{
+			"id": "42",
+			"title": "Hendels Messias",
+			"arrangedBy": "",
+			"description": "En mycket komplicerad sång med många stämmor",
+			"voices": [
+				{
+					"name": "Soprano 1",
+					"note": "#g"
+				},
+				{
+					"name": "Soprano 2",
+					"note": "#f"
+				},
+				{
+					"name": "Alto 1",
+					"note": "a"
+				},
+				{
+					"name": "Alto 2",
+					"note": "c"
+				},
+				{
+					"name": "Tenor 1",
+					"note": "#g"
+				},
+				{
+					"name": "Tenor 2",
+					"note": "#f"
+				},
+				{
+					"name": "Bass 1",
+					"note": "a"
+				},
+				{
+					"name": "Bass 2",
+					"note": "c"
+				}
+			]
+		},
+		{
+			"id": "97",
+			"title": "Glädjens blomster",
+			"arrangedBy": "",
+			"description": "En mycket vacker sång om blommor och annat. Aningen sorgsen.",
+			"voices": [
+				{
+					"name": "Soprano",
+					"note": "#g"
+				},
+				{
+					"name": "Alto",
+					"note": "a"
+				},
+				{
+					"name": "Tenor",
+					"note": "#g"
+				},
+				{
+					"name": "Bass",
+					"note": "c"
+				}
+			]
+		}
+	]
+}
