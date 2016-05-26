@@ -7,14 +7,15 @@
 <script>
 import _ from 'lodash'
 import webaudio from 'webaudio'
-import toneMap from '../assets/tone-map.json'
+import noteFrequencies from '../assets/NoteFrequencies.json'
+
 const tau = 2 * Math.PI
 
 export default {
   props: ['notes'],
   computed: {
     frequencies () {
-      return this.notes.map(note => toneMap[note])
+      return this.notes.map(note => noteFrequencies[note])
     }
   },
   methods: {

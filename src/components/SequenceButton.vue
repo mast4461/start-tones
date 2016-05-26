@@ -1,14 +1,15 @@
 <template>
   <div>
-    <button @mousedown="soundStart" @mouseup="soundStop" @mouseleave="soundStop">Chord</button>
+    <button @click="soundStart">Sequence</button>
   </div>
 </template>
 
 <script>
 import webaudio from 'webaudio'
 import noteFrequencies from '../assets/NoteFrequencies.json'
-const Tau = 2 * Math.PI
 
+const Tau = 2 * Math.PI
+const noteDuration = 700
 export default {
   props: ['voices'],
   computed: {
@@ -26,10 +27,10 @@ export default {
   },
   methods: {
     soundStart () {
-      this.channels.forEach(channel => channel.play())
-    },
-    soundStop () {
-      this.channels.forEach(channel => channel.stop())
+      this.channels.forEach((channel, i) => {
+        setTimeout(() => channel.play(), i * noteDuration)
+        setTimeout(() => channel.stop(), (1 + i) * noteDuration)
+      })
     }
   }
 }

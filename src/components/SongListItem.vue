@@ -1,9 +1,8 @@
 <template>
   <div class="song">
-    <p>{{ song.title }}</p>
-<!--     <p>{{ song.description }}</p>
-    <pre>{{song | json}}</pre>
- -->  </div>
+    <b>{{ song.title }}</b>
+    <pre>{{ song | json }}</pre>
+  </div>
 </template>
 
 <script>
@@ -14,10 +13,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.song > *{
+.song, .song > *{
 	cursor: pointer;
 }
-/*#song {
-  border: 1px solid black;
+.song {
+	border-bottom: 1px solid gray;
+	background-color: rgba(255,255,240,1);
+	padding-top: 10px;
 }
-*/</style>
+
+.song pre {
+	height: 50px;
+	overflow: hidden;
+	font-size: 8pt;
+}
+</style>

@@ -7,14 +7,14 @@
 
 <script>
 import { updateVoiceName, updateVoiceNote } from '../vuex/actions'
-import toneMap from '../assets/tone-map.json'
+import noteFrequencies from '../assets/NoteFrequencies.json'
 
 export default {
   props: ['voice'],
 
   computed: {
     notes () {
-      return Object.keys(toneMap)
+      return Object.keys(noteFrequencies)
     },
     name: {
       set (newName) {

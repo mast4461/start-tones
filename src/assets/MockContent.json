@@ -2,8 +2,9 @@
 	"songs": [
 		{
 			"id": "1",
+			"addedBy": "Martin Stålberg",
 			"title": "Och jungfrun hon går i ringen",
-			"arrangedBy": "",
+			"arrangedBy": "Hjert Karlkvist",
 			"description": "Här kan man skriva lite extra information om en sång, texten kan användas för sökning.",
 			"voices": [
 				{
@@ -26,89 +27,92 @@
 		},
 		{
 			"id": "3",
+			"addedBy": "Martin Stålberg",
 			"title": "Kom du ljuva hjärtevän",
-			"arrangedBy": "",
+			"arrangedBy": "Clemens Törnblom",
 			"description": "Manskörsarrangemang",
 			"voices": [
 				{
 					"name": "Tenor 1",
-					"note": "#g"
+					"note": "Db5"
 				},
 				{
 					"name": "Tenor 2",
-					"note": "#f"
+					"note": "A#4"
 				},
 				{
 					"name": "Bass 1",
-					"note": "a"
+					"note": "F4"
 				},
 				{
 					"name": "Bass 2",
-					"note": "c"
+					"note": "F3"
 				}
 			]
 		},
 		{
 			"id": "42",
+			"addedBy": "Martin Stålberg",
 			"title": "Hendels Messias",
-			"arrangedBy": "",
+			"arrangedBy": "Dietrich Hess",
 			"description": "En mycket komplicerad sång med många stämmor",
 			"voices": [
 				{
 					"name": "Soprano 1",
-					"note": "#g"
+					"note": "D#5"
 				},
 				{
 					"name": "Soprano 2",
-					"note": "#f"
+					"note": "Bb4"
 				},
 				{
 					"name": "Alto 1",
-					"note": "a"
+					"note": "E4"
 				},
 				{
 					"name": "Alto 2",
-					"note": "c"
+					"note": "C4"
 				},
 				{
 					"name": "Tenor 1",
-					"note": "#g"
+					"note": "Ab3"
 				},
 				{
 					"name": "Tenor 2",
-					"note": "#f"
+					"note": "Eb3"
 				},
 				{
 					"name": "Bass 1",
-					"note": "a"
+					"note": "A#2"
 				},
 				{
 					"name": "Bass 2",
-					"note": "c"
+					"note": "C#2"
 				}
 			]
 		},
 		{
 			"id": "97",
+			"addedBy": "Nils Stålberg",
 			"title": "Glädjens blomster",
-			"arrangedBy": "",
+			"arrangedBy": "Hjert Karlkvist",
 			"description": "En mycket vacker sång om blommor och annat. Aningen sorgsen.",
 			"voices": [
 				{
 					"name": "Soprano",
-					"note": "#g"
+					"note": "F5"
 				},
 				{
 					"name": "Alto",
-					"note": "a"
+					"note": "A#4"
 				},
 				{
 					"name": "Tenor",
-					"note": "#g"
+					"note": "Eb4"
 				},
 				{
 					"name": "Bass",
-					"note": "c"
+					"note": "Bb3"
 				}
 			]
 		}
