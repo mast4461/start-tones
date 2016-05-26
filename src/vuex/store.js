@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
-// import _ from 'lodash'
+import _ from 'lodash'
 
 import MockContent from '../assets/MockContent.json'
 
@@ -11,11 +11,9 @@ export default new Vuex.Store({
     songs: MockContent.songs
   },
   mutations: {
-    UPDATE_VOICE_NAME (state, voice, newName) {
-      voice.name = newName
-    },
-    UPDATE_VOICE_NOTE (state, voice, newNote) {
-      voice.note = newNote
+    UPDATE_SONG (state, updatedSong) {
+      let song = _.find(state.songs, song => song.id === updatedSong.id)
+      _.assign(song, updatedSong)
     }
   }
 })
