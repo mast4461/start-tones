@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button @click="soundStart">Sequence</button>
+    <button @click="soundStart">
+      <slot></slot>
+    </button>
   </div>
 </template>
 

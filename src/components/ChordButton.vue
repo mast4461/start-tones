@@ -1,6 +1,8 @@
 <template>
   <div>
-    <sound-button :notes="notes">Chord</sound-button>
+    <sound-button :notes="notes">
+      <slot></slot>
+    </sound-button>
   </div>
 </template>
 

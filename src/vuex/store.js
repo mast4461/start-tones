@@ -14,6 +14,9 @@ export default new Vuex.Store({
     UPDATE_SONG (state, updatedSong) {
       let song = _.find(state.songs, song => song.id === updatedSong.id)
       _.assign(song, updatedSong)
+    },
+    CREATE_SONG (state, newSong) {
+      state.songs.push(newSong)
     }
   }
 })

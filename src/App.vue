@@ -1,13 +1,18 @@
 <template>
   <div id="app">
+    <navbar></navbar>
     <router-view transition-mode="out-in"></router-view>
   </div>
 </template>
 
 <script>
 import store from './vuex/store'
+import Navbar from './components/Navbar.vue'
 export default {
-  store
+  store,
+  components: {
+    Navbar
+  }
 }
 
 </script>
