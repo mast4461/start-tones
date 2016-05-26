@@ -17,6 +17,10 @@ export default new Vuex.Store({
     },
     CREATE_SONG (state, newSong) {
       state.songs.push(newSong)
+    },
+    DELETE_SONG (state, songToDelete) {
+      const index = state.songs.indexOf(songToDelete)
+      state.songs.splice(index, 1)
     }
   }
 })

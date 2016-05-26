@@ -1,10 +1,10 @@
-import SongList from './components/SongList.vue'
+import SongListView from './components/SongListView.vue'
 import SongDetails from './components/SongDetails.vue'
 
 export default {
   '/': {
-    name: 'SongList',
-    component: SongList
+    name: 'SongListView',
+    component: SongListView
   },
   '/:songId': {
     name: 'SongDetails',
