@@ -1,35 +1,19 @@
 <template>
   <div>
-    <button @mousedown="soundStart" @mouseup="soundStop" @mouseleave="soundStop">Chord</button>
+    <sound-button :notes="notes">Chord</sound-button>
   </div>
 </template>
 
 <script>
-import webaudio from 'webaudio'
-import noteFrequencies from '../assets/NoteFrequencies.json'
-const Tau = 2 * Math.PI
-
+import SoundButton from './SoundButton.vue'
 export default {
+  components: {
+    SoundButton
+  },
   props: ['voices'],
   computed: {
     notes () {
       return this.voices.map(voice => voice.note)
-    },
-    frequencies () {
-      return this.notes.map(note => noteFrequencies[note])
-    },
-    channels () {
-      return this.frequencies.map(frequency => {
-        return webaudio((t, i) => Math.sin(t * Tau * frequency))
-      })
-    }
-  },
-  methods: {
-    soundStart () {
-      this.channels.forEach(channel => channel.play())
-    },
-    soundStop () {
-      this.channels.forEach(channel => channel.stop())
     }
   }
 }

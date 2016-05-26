@@ -1,6 +1,6 @@
 <template>
   <div v-for="voice in songCopy.voices">
-    <voice-button :voice="voice"></voice-button>
+    <sound-button :notes="[voice.note]">Play</sound-button>
     <voice-edit :voice="voice"></voice-edit>
     <button @click="deleteVoice($index)">Delete</button>
   </div>
@@ -15,7 +15,7 @@
 <script>
 import _ from 'lodash'
 import traverse from 'traverse'
-import VoiceButton from './VoiceButton.vue'
+import SoundButton from './SoundButton.vue'
 import VoiceEdit from './VoiceEdit.vue'
 import ChordButton from './ChordButton.vue'
 import SequenceButton from './SequenceButton.vue'
@@ -23,7 +23,7 @@ import { updateSong } from '../vuex/actions'
 
 export default {
   components: {
-    VoiceButton,
+    SoundButton,
     ChordButton,
     VoiceEdit,
     SequenceButton

@@ -5,32 +5,23 @@
 </template>
 
 <script>
-import _ from 'lodash'
-import webaudio from 'webaudio'
-import noteFrequencies from '../assets/NoteFrequencies.json'
-
-const tau = 2 * Math.PI
+import { createChannel } from '../sound'
 
 export default {
   props: ['notes'],
-  computed: {
-    frequencies () {
-      return this.notes.map(note => noteFrequencies[note])
-    }
-  },
+  data: () => ({
+    channels: ''
+  }),
   methods: {
     soundStart () {
       this.soundStop()
-      this.channel = webaudio((t, i) => {
-        const tTau = t * tau
-        return _.meanBy(this.frequencies, frequency => Math.sin(tTau * frequency))
-      })
-      this.channel.play()
+      this.channels = this.notes.map(createChannel)
+      this.channels.forEach(channel => channel.play())
     },
     soundStop () {
-      if (this.channel) {
-        this.channel.stop()
-        this.channel = false
+      if (this.channels) {
+        this.channels.forEach(channel => channel.stop())
+        this.channels = false
       }
     }
   }
