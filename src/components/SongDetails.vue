@@ -5,8 +5,11 @@
     <voice-edit :voice="voice"></voice-edit>
     <button @click="deleteVoice($index)">Delete</button>
   </div>
-  <chord-button :voices="songCopy.voices">Play chord</chord-button>
-  <sequence-button :voices="songCopy.voices">Play sequence</sequence-button>
+
+  <sound-button :notes="notes">Play chord</sound-button>
+  <sequence-button :notes="notes">Play sequence</sequence-button>
+
+  <notation :notes="notes"></notation>
 
   <hr>
     <table>
@@ -32,16 +35,16 @@ import _ from 'lodash'
 import traverse from 'traverse'
 import SoundButton from './SoundButton.vue'
 import VoiceEdit from './VoiceEdit.vue'
-import ChordButton from './ChordButton.vue'
 import SequenceButton from './SequenceButton.vue'
+import Notation from './Notation.vue'
 import { updateSong, createSong, deleteSong } from '../vuex/actions'
 
 export default {
   components: {
     SoundButton,
-    ChordButton,
     VoiceEdit,
-    SequenceButton
+    SequenceButton,
+    Notation
   },
   data: () => ({
     songCopy: {}
@@ -62,6 +65,9 @@ export default {
     },
     dirty () {
       return !_.isEqual(this.song, this.songCopy)
+    },
+    notes () {
+      return this.songCopy.voices.map(voice => voice.note)
     }
   },
   created () {

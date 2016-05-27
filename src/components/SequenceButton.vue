@@ -11,12 +11,7 @@ import { createChannel } from '../sound'
 const noteDuration = 800
 
 export default {
-  props: ['voices'],
-  computed: {
-    notes () {
-      return this.voices.map(voice => voice.note)
-    }
-  },
+  props: ['notes'],
   methods: {
     soundStart () {
       this.notes.forEach((note, i) => {
