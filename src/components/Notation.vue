@@ -3,55 +3,50 @@
 </template>
 
 <script>
-import vexflow from 'vexflow'
+const VexTab = window.VexTab
+const Artist = window.Artist
+const Renderer = window.Vex.Flow.Renderer
 
 export default {
-  props: ['notes'],
+  props: ['notes', 'labels', 'clef'],
+  computed: {
+    vexNotes () {
+      return this.notes.map(note => note.replace(/(\d)/, '/$1').replace(/b/, '@'))
+    },
+    vexLabels () {
+      return this.labels.map(label => label === '' ? '?' : label)
+    }
+  },
   ready () {
-    // let Vex = window.Vex
-    let Vex = vexflow
-    var renderer = new Vex.Flow.Renderer(this.$el, Vex.Flow.Renderer.Backends.CANVAS)
+    this.$watch('notes', this.draw)
+    this.$watch('labels', this.draw)
+    this.draw()
+  },
+  methods: {
+    draw () {
+      // Create VexFlow Renderer from canvas element.
+      const renderer = new Renderer(this.$el, Renderer.Backends.CANVAS)
 
-    var ctx = renderer.getContext()
-    var stave = new Vex.Flow.Stave(10, 0, 500)
-    stave.addClef('treble').setContext(ctx).draw()
+      // Initialize VexTab artist and parser.
+      const artist = new Artist(10, 10, 600, {scale: 0.8})
+      const vextab = new VexTab(artist)
 
-    // Create the notes
-    var notes = [
-      // A quarter-note C.
-      new Vex.Flow.StaveNote({ keys: ['c/4'], duration: 'q' }),
-      new Vex.Flow.StaveNote({ keys: ['c/4'], duration: 'q' }),
-      new Vex.Flow.StaveNote({ keys: ['c/4'], duration: 'q' }),
-      new Vex.Flow.StaveNote({ keys: ['c/4'], duration: 'q' })
+      try {
+        const vextabNotation = `tabstave
+          clef=${this.clef}
+          notation=true
+          tablature=false
+          notes :w ${this.vexNotes.join(' ')} \$${this.vexLabels.join(',')}\$`
 
-      // // A quarter-note D.
-      // new Vex.Flow.StaveNote({ keys: ['d/4'], duration: 'q' }),
+        console.log(vextabNotation)
+        vextab.parse(vextabNotation)
 
-      // // A quarter-note rest. Note that the key (b/4) specifies the vertical
-      // // position of the rest.
-      // new Vex.Flow.StaveNote({ keys: ['d/4'], duration: 'q' }),
-      // // new Vex.Flow.StaveNote({ keys: ['b/4'], duration: 'qr' }),
-
-      // // A C-Major chord.
-      // new Vex.Flow.StaveNote({ keys: ['c/4', 'e/4', 'g/4'], duration: 'q' })
-    ]
-
-    // Create a voice in 4/4
-    var voice = new Vex.Flow.Voice({
-      num_beats: 3,
-      beat_value: 3,
-      resolution: Vex.Flow.RESOLUTION
-    })
-
-    // Add notes to voice
-    voice.addTickables(notes)
-
-    // Format and justify the notes to 500 pixels
-    var formatter = new Vex.Flow.Formatter()
-    formatter.joinVoices([voice]).format([voice], 500)
-
-    // Render voice
-    voice.draw(ctx, stave)
+        // Render notation onto canvas.
+        artist.render(renderer)
+      } catch (e) {
+        console.log(e)
+      }
+    }
   }
 }
 

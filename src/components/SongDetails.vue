@@ -1,6 +1,6 @@
 <template>
   <button @click="addVoice">Add voice</button>
-  <div v-for="voice in songCopy.voices">
+  <div v-for="voice in voices">
     <sound-button :notes="[voice.note]">Play</sound-button>
     <voice-edit :voice="voice"></voice-edit>
     <button @click="deleteVoice($index)">Delete</button>
@@ -9,7 +9,8 @@
   <sound-button :notes="notes">Play chord</sound-button>
   <sequence-button :notes="notes">Play sequence</sequence-button>
 
-  <notation :notes="notes"></notation>
+  <notation :notes="notes" :labels="names" clef="treble"></notation>
+  <notation :notes="notes" :labels="names" clef="bass" ></notation>
 
   <hr>
     <table>
@@ -66,8 +67,14 @@ export default {
     dirty () {
       return !_.isEqual(this.song, this.songCopy)
     },
+    voices () {
+      return this.songCopy.voices
+    },
     notes () {
-      return this.songCopy.voices.map(voice => voice.note)
+      return this.voices.map(voice => voice.note)
+    },
+    names () {
+      return this.voices.map(voice => voice.name)
     }
   },
   created () {
