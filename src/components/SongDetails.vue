@@ -38,7 +38,7 @@ import SoundButton from './SoundButton.vue'
 import VoiceEdit from './VoiceEdit.vue'
 import SequenceButton from './SequenceButton.vue'
 import Notation from './Notation.vue'
-import { updateSong, createSong, deleteSong } from '../vuex/actions'
+import theFirebase from '../theFirebase'
 
 export default {
   components: {
@@ -48,21 +48,15 @@ export default {
     Notation
   },
   data: () => ({
-    songCopy: {}
+    songCopy: {},
+    song: {}
   }),
-  vuex: {
-    getters: {
-      songs: state => state.songs
-    },
-    actions: {
-      updateSong,
-      createSong,
-      deleteSong
-    }
+  firebase: {
+    songs: theFirebase.songsRef
   },
   computed: {
     song () {
-      return _.find(this.songs, song => song.id === this.$route.params.songId)
+      return _.find(this.songs, song => song['.key'] === this.$route.params.songKey)
     },
     dirty () {
       return !_.isEqual(this.song, this.songCopy)
@@ -82,15 +76,15 @@ export default {
   },
   methods: {
     createSongLocal () {
-      const newSong = this.createSong(this.songCopy)
-      this.$router.go(newSong.id)
+      let key = theFirebase.createSong(this.songCopy)
+      this.$router.go(key)
     },
     updateSongLocal () {
-      this.updateSong(this.songCopy)
+      theFirebase.updateSong(this.songCopy)
     },
     deleteSongLocal () {
       this.$router.go('/')
-      this.deleteSong(this.songCopy)
+      theFirebase.deleteSong(this.songCopy)
     },
     addVoice () {
       this.songCopy.voices.push({name: '', note: 'G5'})

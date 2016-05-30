@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
+    "firebase": "2.4.2",
     "lodash": "^4.13.1",
     "traverse": "^0.6.6",
     "vexflow": "^1.2.45",
@@ -19,6 +20,7 @@
     "vue": "^1.0.21",
     "vue-resource": "^0.7.0",
     "vue-router": "^0.7.13",
+    "vuefire": "^1.0.1",
     "vuex": "^0.6.3",
     "webaudio": "^2.0.0"
   },

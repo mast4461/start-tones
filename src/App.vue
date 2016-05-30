@@ -1,17 +1,21 @@
 <template>
   <div id="app">
     <navbar></navbar>
-    <router-view transition-mode="out-in"></router-view>
+    <router-view transition-mode="out-in">
+    </router-view>
   </div>
 </template>
 
 <script>
-import store from './vuex/store'
 import Navbar from './components/Navbar.vue'
+import { songsRef } from './theFirebase'
+
 export default {
-  store,
   components: {
     Navbar
+  },
+  firebase: {
+    songs: songsRef
   }
 }
 

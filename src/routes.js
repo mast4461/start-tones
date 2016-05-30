@@ -6,7 +6,7 @@ export default {
     name: 'SongListView',
     component: SongListView
   },
-  '/:songId': {
+  '/song/:songKey': {
     name: 'SongDetails',
     component: SongDetails
   }
