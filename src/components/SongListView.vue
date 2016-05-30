@@ -24,7 +24,8 @@
 import SongList from './SongList.vue'
 import _ from 'lodash'
 import Vue from 'vue'
-import { createSong } from '../vuex/actions'
+import theFirebase from '../theFirebase'
+import songTemplate from '../assets/SongTemplate.json'
 
 export default {
   components: {
@@ -47,13 +48,8 @@ export default {
       return filter(songs, this.customFilter)
     }
   },
-  vuex: {
-    getters: {
-      songs: state => state.songs
-    },
-    actions: {
-      createSong
-    }
+  firebase: {
+    songs: theFirebase.songsRef
   },
   methods: {
     customFilter (song, index) {
@@ -66,9 +62,12 @@ export default {
       })
     },
     addNewSong () {
-      const newSong = this.createSong()
-      this.$router.go(newSong.id)
+      let key = theFirebase.createSong(songTemplate)
+      this.$router.go(key)
     }
+    // addSongsToFireBase () {
+    //   this.songs.forEach(song => itemsRef.push(song))
+    // }
   }
 }
 </script>
