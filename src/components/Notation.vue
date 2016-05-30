@@ -1,5 +1,5 @@
 <template>
-  <canvas width='700' height='100'></canvas>
+  <canvas width="0" height="0"></canvas>
 </template>
 
 <script>
@@ -8,7 +8,17 @@ const Artist = window.Artist
 const Renderer = window.Vex.Flow.Renderer
 
 export default {
-  props: ['notes', 'labels', 'clef'],
+  props: {
+    notes: {
+      default: () => []
+    },
+    labels: {
+      default: () => []
+    },
+    clef: {
+      default: 'treble'
+    }
+  },
   computed: {
     vexNotes () {
       return this.notes.map(note => note.replace(/(\d)/, '/$1').replace(/b/, '@'))
@@ -24,6 +34,10 @@ export default {
   },
   methods: {
     draw () {
+      if (this.vexNotes.length < 1) {
+        return
+      }
+
       // Create VexFlow Renderer from canvas element.
       const renderer = new Renderer(this.$el, Renderer.Backends.CANVAS)
 
@@ -31,14 +45,17 @@ export default {
       const artist = new Artist(10, 10, 600, {scale: 0.8})
       const vextab = new VexTab(artist)
 
-      try {
-        const vextabNotation = `tabstave
-          clef=${this.clef}
-          notation=true
-          tablature=false
-          notes :w ${this.vexNotes.join(' ')} \$${this.vexLabels.join(',')}\$`
+      let vextabNotation = `tabstave
+        clef=${this.clef}
+        notation=true
+        tablature=false
+        notes :w ${this.vexNotes.join(' ')}`
 
-        console.log(vextabNotation)
+      if (this.vexLabels) {
+        vextabNotation += ` \$${this.vexLabels.join(',')}\$`
+      }
+
+      try {
         vextab.parse(vextabNotation)
 
         // Render notation onto canvas.

@@ -68,7 +68,7 @@ export default {
       return !_.isEqual(this.song, this.songCopy)
     },
     voices () {
-      return this.songCopy.voices
+      return this.songCopy.voices || []
     },
     notes () {
       return this.voices.map(voice => voice.note)
