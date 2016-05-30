@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="soundStart">
+    <button @mousedown="soundStart">
       <slot></slot>
     </button>
   </div>

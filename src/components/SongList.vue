@@ -6,7 +6,7 @@
         <option v-for="field in sortFields" :value="field">{{field}}</option>
       </select>
     </div>
-    <song-list-item v-for="song in songs | orderBy sortField" :song="song" v-link="song.id"></song-list-item>
+    <song-list-item v-for="song in songs | orderBy sortField" :song="song"></song-list-item>
   </div>
 </template>
 

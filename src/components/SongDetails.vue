@@ -1,5 +1,7 @@
 <template>
-  <button @click="addVoice">Add voice</button>
+
+  <h1>{{songCopy.title}}</h1>
+
   <div v-for="voice in voices">
     <sound-button :notes="[voice.note]">Play</sound-button>
     <voice-edit :voice="voice"></voice-edit>
@@ -9,6 +11,10 @@
   <sound-button :notes="notes">Play chord</sound-button>
   <sequence-button :notes="notes">Play sequence</sequence-button>
 
+  <br>
+  <button @click="addVoice">Add voice</button>
+  <br>
+
   <notation :notes="notes" :labels="names" clef="treble"></notation>
   <notation :notes="notes" :labels="names" clef="bass" ></notation>
 
@@ -16,7 +22,7 @@
     <table>
       <tr v-for="field in ['title', 'arrangedBy', 'description']">
         <td>{{field}}</td>
-        <td><input v-model="songCopy[field]"></td>
+        <td><textarea v-model="songCopy[field]"></textarea></td>
       </tr>
     </table>
   <hr>
@@ -25,10 +31,6 @@
   <button @click="createSongLocal" :disabled="!dirty">Save as new song</button>
   <button @click="reloadSong" :disabled="!dirty">Reload</button>
   <button @click="deleteSongLocal">Delete song</button>
-
-  <hr>
-
-  <pre>{{songCopy | json}}</pre>
 </template>
 
 <script>
@@ -94,6 +96,10 @@ export default {
     },
     reloadSong () {
       this.songCopy = traverse(this.song).map(_.identity)
+    },
+    updateSongCopy () {
+      console.log('updating song copy')
+      _.assign(this.songCopy, traverse(this.song).map(_.identity))
     }
   }
 }
