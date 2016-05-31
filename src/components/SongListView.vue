@@ -63,11 +63,8 @@ export default {
     },
     addNewSong () {
       let key = theFirebase.createSong(songTemplate)
-      this.$router.go(key)
+      this.$router.go('song/' + key)
     }
-    // addSongsToFireBase () {
-    //   this.songs.forEach(song => itemsRef.push(song))
-    // }
   }
 }
 </script>

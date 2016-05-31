@@ -50,16 +50,10 @@ export default {
     Notation
   },
   data: () => ({
-    songCopy: {},
+    songCopy: '',
     song: {}
   }),
-  firebase: {
-    songs: theFirebase.songsRef
-  },
   computed: {
-    song () {
-      return _.find(this.songs, song => song['.key'] === this.$route.params.songKey)
-    },
     dirty () {
       return !_.isEqual(this.song, this.songCopy)
     },
@@ -74,7 +68,9 @@ export default {
     }
   },
   created () {
-    this.reloadSong()
+    let ref = theFirebase.songsRef.child(this.$route.params.songKey)
+    this.$bindAsObject('song', ref)
+    ref.on('value', this.reloadSong)
   },
   methods: {
     createSongLocal () {
@@ -89,6 +85,9 @@ export default {
       theFirebase.deleteSong(this.songCopy)
     },
     addVoice () {
+      if (!_.has(this.songCopy, 'voices')) {
+        this.$set(this.songCopy, 'voices', [])
+      }
       this.songCopy.voices.push({name: '', note: 'G5'})
     },
     deleteVoice (index) {
