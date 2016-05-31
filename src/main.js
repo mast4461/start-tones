@@ -10,6 +10,7 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 
 var router = new VueRouter({
+  root: '/start-tones',
   history: true
 })
 
