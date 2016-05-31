@@ -3,6 +3,8 @@ var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 
+console.log("config:", config);
+
 module.exports = {
   entry: {
     app: './src/main.js'
