@@ -6,6 +6,7 @@
     <sound-button :notes="[voice.note]">Play</sound-button>
     <voice-edit :voice="voice"></voice-edit>
     <button @click="deleteVoice($index)">Delete</button>
+    <notation :note="voice.note"></notation>
   </div>
 
   <sound-button :notes="notes">Play chord</sound-button>
@@ -14,9 +15,6 @@
   <br>
   <button @click="addVoice">Add voice</button>
   <br>
-
-  <notation :notes="notes" :labels="names" clef="treble"></notation>
-  <notation :notes="notes" :labels="names" clef="bass" ></notation>
 
   <hr>
     <table>
@@ -34,12 +32,13 @@
 </template>
 
 <script>
-import _ from 'lodash'
-import traverse from 'traverse'
 import SoundButton from './SoundButton.vue'
 import VoiceEdit from './VoiceEdit.vue'
 import SequenceButton from './SequenceButton.vue'
 import Notation from './Notation.vue'
+
+import _ from 'lodash'
+import traverse from 'traverse'
 import theFirebase from '../theFirebase'
 
 export default {
