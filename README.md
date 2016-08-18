@@ -34,4 +34,4 @@ npm run deploy
 
 App served both locally and on gh-pages at path /start-tones
 
-App available at (http://mast4461.github.io/start-tones/)
+App available at http://mast4461.github.io/start-tones/
