@@ -1,5 +1,10 @@
 <template>
-  <button @mousedown="soundStart" @mouseup="soundStop" @mouseleave="soundStop">
+  <button
+  @mousedown="soundStart"
+  @touchstart="soundStart"
+  @mouseup="soundStop"
+  @mouseleave="soundStop"
+  @touchend="soundStop">
     <slot></slot>
   </button>
 </template>
@@ -24,6 +29,10 @@ export default {
         this.channels = false
       }
     }
+  },
+  // TODO is the following method name correct?
+  beforeDestroy () {
+    this.soundStop()
   }
 }
 </script>
